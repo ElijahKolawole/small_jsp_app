@@ -10,16 +10,16 @@ import java.util.ArrayList;
 @WebServlet("/instance")
 
 public class PojoInstance extends HttpServlet{
-		  static MyFirstPojo pojo1 = new MyFirstPojo("Adefemi Kolawole");
-		   static MyFirstPojo pojo2 = new MyFirstPojo("Olaitan Kolawole");
-		    static MyFirstPojo pojo3 = new MyFirstPojo("Faith Kolawole");
-		     static MyFirstPojo pojo4 = new MyFirstPojo("Faithful Kolawole");
-		      static MyFirstPojo pojo5 = new MyFirstPojo("Adejare Kolawole");
-		       static MyFirstPojo pojo6 = new MyFirstPojo("Adekunle Kolawole");
-		        static MyFirstPojo pojo7 = new MyFirstPojo("Adedotun Kolawole");
-		         static MyFirstPojo pojo8 = new MyFirstPojo("Mummy Kolawole");
-		          static MyFirstPojo pojo9 = new MyFirstPojo("Daddy Kolawole");
-		           static MyFirstPojo pojo10 = new MyFirstPojo("Adekunle Kolawole");
+		  static MyFirstPojo pojo1 = new MyFirstPojo(1, "Adefemi Kolawole");
+		   static MyFirstPojo pojo2 = new MyFirstPojo(2, "Olaitan Kolawole");
+		    static MyFirstPojo pojo3 = new MyFirstPojo(3, "Faith Kolawole");
+		     static MyFirstPojo pojo4 = new MyFirstPojo(4, "Faithful Kolawole");
+		      static MyFirstPojo pojo5 = new MyFirstPojo(5, "Adejare Kolawole");
+		       static MyFirstPojo pojo6 = new MyFirstPojo(6,"Adekunle Kolawole");
+		        static MyFirstPojo pojo7 = new MyFirstPojo(7, "Adedotun Kolawole");
+		         static MyFirstPojo pojo8 = new MyFirstPojo(8, "Mummy Kolawole");
+		          static MyFirstPojo pojo9 = new MyFirstPojo(9, "Daddy Kolawole");
+		           static MyFirstPojo pojo10 = new MyFirstPojo(10, "Adekunle Kolawole");
 
 	@Override
 	public void doGet(HttpServletRequest rq, HttpServletResponse rs)throws IOException, ServletException{
@@ -45,7 +45,8 @@ public class PojoInstance extends HttpServlet{
 
 		out.println("<hr>");
 		for(MyFirstPojo object : pojo){
-			out.println("<p>Name: " + object.getName() + "</p>");
+			//out.println("<p>Name: " + object.getName() + "</p>");
+			out.println("<p> " + object.toString() + " </p>");
 		}
 		out.println("<hr>");
 		out.println("<p>Request URI: " + rq.getRequestURI() + "</p>");
