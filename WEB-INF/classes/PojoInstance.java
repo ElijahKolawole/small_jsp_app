@@ -37,7 +37,7 @@ public class PojoInstance extends HttpServlet{
 		rs.setContentType("text/html");
 		PrintWriter out = rs.getWriter();
 		out.println("<html>");
-		out.println("<head><title>Welcome Servlet</title></head>");
+		out.println("<head><title>POJO Instance</title> </head>");
 		out.println("<body>");
 		out.println("<h1>Instance of POJO</h1>");
 		out.println("<hr>");
@@ -48,6 +48,21 @@ public class PojoInstance extends HttpServlet{
 			//out.println("<p>Name: " + object.getName() + "</p>");
 			out.println("<p> " + object.toString() + " </p>");
 		}
+		out.println("<hr>");
+		out.println("<h2>Rendering the same information in a table</h2>");
+		
+		out.println("<table border=1 cellpadding=10>");
+			out.println("<thead>");
+				out.println("<tr><td>ID</td><td>Name</td></tr>");
+			out.println("</thead>");
+			out.println("<tbody>");
+			 for (int row=0; row < pojo.size(); row++) {
+			 	out.println("<tr><td>" +pojo.get(row).getId() + "</td><td>" + pojo.get(row).getName() + "</td></tr>");
+				}
+			
+			out.println("</tbody>");
+		out.println("</table>");
+
 		out.println("<hr>");
 		out.println("<p>Request URI: " + rq.getRequestURI() + "</p>");
 		out.println("<p>Request Protocol: " + rq.getProtocol() + "</p>");
