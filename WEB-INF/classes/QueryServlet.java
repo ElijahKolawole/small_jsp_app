@@ -24,6 +24,41 @@ public class QueryServlet extends HttpServlet {
       out.println("<h1>Book Query Servlet</h1>");
       out.println("<hr>");
      
+       try (
+         // Step 1: Allocate a database 'Connection' object
+         Connection conn = DriverManager.getConnection(
+               "jdbc:mysql://localhost:3306/ebookshop?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC",
+               "myuser", "datame1");   // For MySQL
+               // The format is: "jdbc:mysql://hostname:port/databaseName", "username", "password"
+
+         // Step 2: Allocate a 'Statement' object in the Connection
+         Statement stmt = conn.createStatement();
+      ) {
+         // Step 3: Execute a SQL SELECT query
+         String sqlStr = "select * from books where author = "
+               + "'" + request.getParameter("author") + "'"   // Single-quote SQL string
+               + " and qty > 0 order by price desc";
+
+         out.println("<h3>Thank you for your query.</h3>");
+         out.println("<p>Your SQL statement is: " + sqlStr + "</p>"); // Echo for debugging
+         ResultSet rset = stmt.executeQuery(sqlStr);  // Send the query to the server
+
+         // Step 4: Process the query result set
+         int count = 0;
+         while(rset.next()) {
+            // Print a paragraph <p>...</p> for each record
+            out.println("<p>" + rset.getString("author")
+                  + ", " + rset.getString("title")
+                  + ", $" + rset.getDouble("price") + "</p>");
+            count++;
+         }
+         out.println("<p>==== " + count + " records found =====</p>");
+      } catch(Exception ex) {
+         out.println("<p>Error: " + ex.getMessage() + "</p>");
+         out.println("<p>Check Tomcat console for details.</p>");
+         ex.printStackTrace();
+      }  // Step 5: Close conn and stmt - Done automatically by try-with-resources (JDK 7)
+ 
 
       // try (
       //    // Step 1: Allocate a database 'Connection' object
